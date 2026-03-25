@@ -59,7 +59,9 @@ controlPanelGuid = nil
 function onLoad(saved_data)
   loadState(saved_data)
   broadcastToAll("ANTZ TTS prototype loaded. Configure asset URLs at the top of Global if you want Setup Antz to spawn the table automatically.", {0.95, 0.88, 0.67})
-  spawnControlPanel()
+  Wait.frames(function()
+    spawnControlPanel()
+  end, 3)
 end
 
 function onSave()
@@ -92,7 +94,7 @@ function spawnControlPanel()
     return
   end
 
-  local panel = spawnObject({
+  spawnObject({
     type = "BlockSquare",
     position = layout.controlPanel.position,
     rotation = layout.controlPanel.rotation,
@@ -107,10 +109,6 @@ function spawnControlPanel()
       configureControlPanel(obj)
     end,
   })
-
-  if panel ~= nil then
-    controlPanelGuid = panel.getGUID()
-  end
 end
 
 function configureControlPanel(panel)
