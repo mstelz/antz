@@ -49,27 +49,15 @@ layout = {
 }
 
 spawnedGuids = {}
-buttonIndex = {
-  setup = 0,
-  nextRound = 1,
-  playerCount = 2,
-}
 
 function onLoad(saved_data)
-  loadState(saved_data)
   broadcastToAll("ANTZ TTS prototype loaded. Configure asset URLs at the top of Global if you want Setup Antz to spawn the table automatically.", {0.95, 0.88, 0.67})
   createButtons()
-  refreshButtons()
-end
-
-function onSave()
-  return JSON.encode({
-    state = state,
-    spawnedGuids = spawnedGuids,
-  })
 end
 
 function createButtons()
+  Global.clearButtons()
+
   Global.createButton({
     click_function = "setupAntz",
     function_owner = Global,
@@ -99,7 +87,7 @@ function createButtons()
   Global.createButton({
     click_function = "cyclePlayerCount",
     function_owner = Global,
-    label = "Players: 2",
+    label = "Players: " .. tostring(state.playerCount),
     position = {0, 0.3, 0.1},
     rotation = {0, 180, 0},
     width = 1800,
@@ -107,13 +95,6 @@ function createButtons()
     font_size = 190,
     color = {0.24, 0.3, 0.42},
     font_color = {1, 0.95, 0.86},
-  })
-end
-
-function refreshButtons()
-  Global.editButton({
-    index = buttonIndex.playerCount,
-    label = "Players: " .. tostring(state.playerCount),
   })
 end
 
@@ -132,13 +113,11 @@ function setupAntz()
   spawnDecks()
   spawnBags()
 
-  saveState()
   broadcastToAll("Antz table spawned for " .. tostring(state.playerCount) .. " players with board, colony mats, decks, bags, and snap points.", {0.81, 0.94, 0.79})
 end
 
 function nextRound()
   state.round = state.round + 1
-  saveState()
   broadcastToAll("Round " .. tostring(state.round) .. ": reveal a threat, resolve route pressure, then build or forage.", {0.85, 0.88, 1})
 end
 
@@ -149,8 +128,7 @@ function cyclePlayerCount()
     state.playerCount = state.playerCount + 1
   end
 
-  refreshButtons()
-  saveState()
+  createButtons()
   broadcastToAll("Player count set to " .. tostring(state.playerCount) .. ". Press Setup Antz to respawn the table for that layout.", {0.86, 0.92, 1})
 end
 
@@ -447,7 +425,6 @@ function registerSpawn(obj)
   end
 
   table.insert(spawnedGuids, guid)
-  saveState()
 end
 
 function toTransform(position, rotation, scale)
@@ -503,27 +480,4 @@ function cardObject(cardId, nickname)
     CardID = cardId,
     SidewaysCard = false,
   }
-end
-
-function saveState()
-  -- Intentionally empty; TTS persists state through onSave().
-end
-
-function loadState(saved_data)
-  if saved_data == nil or saved_data == "" then
-    return
-  end
-
-  local decoded = JSON.decode(saved_data)
-  if decoded == nil then
-    return
-  end
-
-  if decoded.state ~= nil then
-    state = decoded.state
-  end
-
-  if decoded.spawnedGuids ~= nil then
-    spawnedGuids = decoded.spawnedGuids
-  end
 end
