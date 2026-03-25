@@ -211,18 +211,27 @@ function missingAssetKeys()
 end
 
 function spawnBoard()
-  spawnObjectJSON({
-    json = JSON.encode({
-      Name = "Custom_Board",
-      Transform = toTransform(layout.board.position, layout.board.rotation, layout.board.scale),
+  local pos = layout.board.position
+  local rot = layout.board.rotation
+  local scl = layout.board.scale
+  spawnObjectData({
+    data = {
+      Name = "Custom_Tile",
       Nickname = "Backyard Branch Board",
       Description = "Branching routes from the nest to foraging spaces.",
+      Transform = toTransform(pos, rot, scl),
       CustomImage = {
         ImageURL = assetUrls.board,
         ImageSecondaryURL = "",
-        WidthScale = 1,
+        ImageScalar = 1,
+        CustomTile = {
+          Type = 0,
+          Thickness = 0.1,
+          Stackable = false,
+          Stretch = true,
+        },
       },
-    }),
+    },
     callback_function = function(obj)
       registerSpawn(obj)
       obj.setLock(true)
@@ -233,18 +242,24 @@ end
 
 function spawnPlayerMats()
   for _, mat in ipairs(getMatLayout()) do
-    spawnObjectJSON({
-      json = JSON.encode({
-        Name = "Custom_Board",
-        Transform = toTransform(mat.position, mat.rotation, mat.scale),
+    spawnObjectData({
+      data = {
+        Name = "Custom_Tile",
         Nickname = mat.nickname,
         Description = "Player colony tableau and tracks.",
+        Transform = toTransform(mat.position, mat.rotation, mat.scale),
         CustomImage = {
           ImageURL = assetUrls.playerMat,
           ImageSecondaryURL = "",
-          WidthScale = 1,
+          ImageScalar = 1,
+          CustomTile = {
+            Type = 0,
+            Thickness = 0.1,
+            Stackable = false,
+            Stretch = true,
+          },
         },
-      }),
+      },
       callback_function = function(obj)
         registerSpawn(obj)
         obj.setLock(true)
@@ -326,8 +341,8 @@ function getMatLayout()
 end
 
 function spawnDecks()
-  spawnObjectJSON({
-    json = JSON.encode({
+  spawnObjectData({
+    data = {
       Name = "DeckCustom",
       Transform = toTransform(layout.chamberDeck.position, layout.chamberDeck.rotation, layout.chamberDeck.scale),
       Nickname = "Colony Deck",
@@ -345,14 +360,14 @@ function spawnDecks()
       },
       DeckIDs = {100, 101, 102, 103},
       ContainedObjects = chamberContainedObjects(),
-    }),
+    },
     callback_function = function(obj)
       registerSpawn(obj)
     end,
   })
 
-  spawnObjectJSON({
-    json = JSON.encode({
+  spawnObjectData({
+    data = {
       Name = "DeckCustom",
       Transform = toTransform(layout.eventDeck.position, layout.eventDeck.rotation, layout.eventDeck.scale),
       Nickname = "Threat Deck",
@@ -370,7 +385,7 @@ function spawnDecks()
       },
       DeckIDs = {200, 201, 202, 203, 204, 205},
       ContainedObjects = eventContainedObjects(),
-    }),
+    },
     callback_function = function(obj)
       registerSpawn(obj)
     end,
