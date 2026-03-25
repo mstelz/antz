@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1400" viewBox="0 0 2400 1400">
+  <defs>
+    <linearGradient id="matBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#231813"/>
+      <stop offset="56%" stop-color="#33231b"/>
+      <stop offset="100%" stop-color="#19110d"/>
+    </linearGradient>
+    <linearGradient id="nestPanel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d2119"/>
+      <stop offset="100%" stop-color="#1b1410"/>
+    </linearGradient>
+    <linearGradient id="trackPanel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#251b15"/>
+      <stop offset="100%" stop-color="#16100d"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#000000" flood-opacity="0.34"/>
+    </filter>
+    <pattern id="soil" width="180" height="180" patternUnits="userSpaceOnUse">
+      <circle cx="28" cy="34" r="3" fill="#ffffff" fill-opacity="0.04"/>
+      <circle cx="132" cy="56" r="2.5" fill="#ffffff" fill-opacity="0.03"/>
+      <circle cx="92" cy="122" r="2" fill="#000000" fill-opacity="0.08"/>
+      <path d="M18 148c28-18 62-18 94-4" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <rect width="2400" height="1400" fill="url(#matBg)"/>
+  <rect width="2400" height="1400" fill="url(#soil)"/>
+  <rect x="24" y="24" width="2352" height="1352" rx="32" fill="none" stroke="#d3b06b" stroke-width="10"/>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="72" width="710" height="168" rx="24" fill="#17110d" fill-opacity="0.72" stroke="#d3b06b" stroke-width="4"/>
+    <text x="110" y="146" fill="#f8e8bd" font-size="64" font-family="Trebuchet MS" font-weight="700">Colony Mat</text>
+    <text x="110" y="194" fill="#dfccb0" font-size="27" font-family="Georgia">Stage chambers in the nest, then track resources and pressure on the right.</text>
+  </g>
+
+  <g transform="translate(72,248)" filter="url(#shadow)">
+    <rect width="1044" height="1080" rx="28" fill="url(#nestPanel)" stroke="#8a7057" stroke-width="6"/>
+    <text x="38" y="64" fill="#f6e4ba" font-size="42" font-family="Trebuchet MS" font-weight="700">Nest Build Grid</text>
+    <text x="38" y="102" fill="#d9c6ab" font-size="22" font-family="Georgia">Snap chamber cards here in reading order as the colony develops.</text>
+    <g fill="#1e1612" stroke="#8a7057" stroke-width="4">
+      <rect x="38" y="136" width="220" height="220" rx="16"/>
+      <rect x="286" y="136" width="220" height="220" rx="16"/>
+      <rect x="534" y="136" width="220" height="220" rx="16"/>
+      <rect x="782" y="136" width="220" height="220" rx="16"/>
+      <rect x="38" y="384" width="220" height="220" rx="16"/>
+      <rect x="286" y="384" width="220" height="220" rx="16"/>
+      <rect x="534" y="384" width="220" height="220" rx="16"/>
+      <rect x="782" y="384" width="220" height="220" rx="16"/>
+      <rect x="38" y="632" width="220" height="220" rx="16"/>
+      <rect x="286" y="632" width="220" height="220" rx="16"/>
+      <rect x="534" y="632" width="220" height="220" rx="16"/>
+      <rect x="782" y="632" width="220" height="220" rx="16"/>
+      <rect x="38" y="880" width="220" height="220" rx="16"/>
+      <rect x="286" y="880" width="220" height="220" rx="16"/>
+      <rect x="534" y="880" width="220" height="220" rx="16"/>
+      <rect x="782" y="880" width="220" height="220" rx="16"/>
+    </g>
+    <g fill="#f6e4ba" font-size="24" font-family="Trebuchet MS" font-weight="700">
+      <text x="54" y="172">A1</text><text x="302" y="172">A2</text><text x="550" y="172">A3</text><text x="798" y="172">A4</text>
+      <text x="54" y="420">B1</text><text x="302" y="420">B2</text><text x="550" y="420">B3</text><text x="798" y="420">B4</text>
+      <text x="54" y="668">C1</text><text x="302" y="668">C2</text><text x="550" y="668">C3</text><text x="798" y="668">C4</text>
+      <text x="54" y="916">D1</text><text x="302" y="916">D2</text><text x="550" y="916">D3</text><text x="798" y="916">D4</text>
+    </g>
+  </g>
+
+  <g transform="translate(1160,248)" filter="url(#shadow)">
+    <rect width="1170" height="1080" rx="28" fill="url(#trackPanel)" stroke="#8a7057" stroke-width="6"/>
+    <text x="40" y="66" fill="#f6e4ba" font-size="42" font-family="Trebuchet MS" font-weight="700">Resources and Pressure</text>
+    <text x="40" y="104" fill="#d9c6ab" font-size="22" font-family="Georgia">Use cubes, coins, or dial markers until a final economy is locked.</text>
+
+    <g transform="translate(0,148)">
+      <g>
+        <rect x="32" y="0" width="1106" height="88" rx="18" fill="#2b211a" stroke="#806751" stroke-width="3"/>
+        <circle cx="84" cy="44" r="22" fill="#d1a943"/>
+        <text x="128" y="54" fill="#efe2c4" font-size="32" font-family="Trebuchet MS" font-weight="700">Food</text>
+        <rect x="860" y="16" width="230" height="56" rx="14" fill="#17110d" stroke="#d3b06b" stroke-width="3"/>
+        <text x="878" y="54" fill="#dfccb0" font-size="24" font-family="Georgia">Supply Track</text>
+      </g>
+      <g transform="translate(0,104)">
+        <rect x="32" y="0" width="1106" height="88" rx="18" fill="#2b211a" stroke="#806751" stroke-width="3"/>
+        <circle cx="84" cy="44" r="22" fill="#6f9e58"/>
+        <text x="128" y="54" fill="#efe2c4" font-size="32" font-family="Trebuchet MS" font-weight="700">Leaves</text>
+        <rect x="860" y="16" width="230" height="56" rx="14" fill="#17110d" stroke="#d3b06b" stroke-width="3"/>
+        <text x="878" y="54" fill="#dfccb0" font-size="24" font-family="Georgia">Supply Track</text>
+      </g>
+      <g transform="translate(0,208)">
+        <rect x="32" y="0" width="1106" height="88" rx="18" fill="#2b211a" stroke="#806751" stroke-width="3"/>
+        <circle cx="84" cy="44" r="22" fill="#8d6346"/>
+        <text x="128" y="54" fill="#efe2c4" font-size="32" font-family="Trebuchet MS" font-weight="700">Materials</text>
+        <rect x="860" y="16" width="230" height="56" rx="14" fill="#17110d" stroke="#d3b06b" stroke-width="3"/>
+        <text x="878" y="54" fill="#dfccb0" font-size="24" font-family="Georgia">Supply Track</text>
+      </g>
+      <g transform="translate(0,312)">
+        <rect x="32" y="0" width="1106" height="88" rx="18" fill="#2b211a" stroke="#806751" stroke-width="3"/>
+        <circle cx="84" cy="44" r="22" fill="#5b88a4"/>
+        <text x="128" y="54" fill="#efe2c4" font-size="32" font-family="Trebuchet MS" font-weight="700">Water</text>
+        <rect x="860" y="16" width="230" height="56" rx="14" fill="#17110d" stroke="#d3b06b" stroke-width="3"/>
+        <text x="878" y="54" fill="#dfccb0" font-size="24" font-family="Georgia">Pressure Buffer</text>
+      </g>
+      <g transform="translate(0,416)">
+        <rect x="32" y="0" width="1106" height="88" rx="18" fill="#2b211a" stroke="#806751" stroke-width="3"/>
+        <circle cx="84" cy="44" r="22" fill="#d6c9b2"/>
+        <text x="128" y="54" fill="#efe2c4" font-size="32" font-family="Trebuchet MS" font-weight="700">Eggs</text>
+        <rect x="860" y="16" width="230" height="56" rx="14" fill="#17110d" stroke="#d3b06b" stroke-width="3"/>
+        <text x="878" y="54" fill="#dfccb0" font-size="24" font-family="Georgia">Brood Count</text>
+      </g>
+      <g transform="translate(0,520)">
+        <rect x="32" y="0" width="1106" height="88" rx="18" fill="#2b211a" stroke="#806751" stroke-width="3"/>
+        <circle cx="84" cy="44" r="22" fill="#b16251"/>
+        <text x="128" y="54" fill="#efe2c4" font-size="32" font-family="Trebuchet MS" font-weight="700">Threat</text>
+        <rect x="860" y="16" width="230" height="56" rx="14" fill="#17110d" stroke="#d3b06b" stroke-width="3"/>
+        <text x="878" y="54" fill="#dfccb0" font-size="24" font-family="Georgia">Alert Level</text>
+      </g>
+      <g transform="translate(0,624)">
+        <rect x="32" y="0" width="1106" height="88" rx="18" fill="#2b211a" stroke="#806751" stroke-width="3"/>
+        <circle cx="84" cy="44" r="22" fill="#c67b55"/>
+        <text x="128" y="54" fill="#efe2c4" font-size="32" font-family="Trebuchet MS" font-weight="700">Queen HP</text>
+        <rect x="860" y="16" width="230" height="56" rx="14" fill="#17110d" stroke="#d3b06b" stroke-width="3"/>
+        <text x="878" y="54" fill="#dfccb0" font-size="24" font-family="Georgia">Damage Track</text>
+      </g>
+    </g>
+
+    <g transform="translate(32,910)">
+      <rect width="1106" height="136" rx="24" fill="#18110d" stroke="#806751" stroke-width="3"/>
+      <text x="30" y="50" fill="#f6e4ba" font-size="32" font-family="Trebuchet MS" font-weight="700">Playtest Notes</text>
+      <text x="30" y="88" fill="#dfccb0" font-size="24" font-family="Georgia">Keep one worker reserve, one discard corner, and one reminder token space beside this panel.</text>
+      <text x="30" y="118" fill="#dfccb0" font-size="24" font-family="Georgia">If a chamber earns a permanent track effect, place its card on the matching row.</text>
+    </g>
+  </g>
+</svg>

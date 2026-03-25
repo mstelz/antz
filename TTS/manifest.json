@@ -1,0 +1,19 @@
+{
+  "name": "Antz TTS Prototype",
+  "version": "0.1.0",
+  "description": "First-pass Tabletop Simulator package for the Antz backyard colony game.",
+  "entry_save": "saves/Antz_Template.json",
+  "global_script": "scripts/Global.-1.ttslua",
+  "global_ui": "scripts/Global.-1.xml",
+  "asset_generator": "tools_generate_assets.py",
+  "png_renderer": "tools_render_pngs.js",
+  "assets": {
+    "board": "assets/png/board.png",
+    "player_mat": "assets/png/player_mat.png",
+    "chamber_sheet": "assets/png/chamber_sheet.png",
+    "event_sheet": "assets/png/event_sheet.png",
+    "chamber_back": "assets/png/chamber_back.png",
+    "event_back": "assets/png/event_back.png",
+    "tokens": "assets/png/tokens_sheet.png"
+  }
+}

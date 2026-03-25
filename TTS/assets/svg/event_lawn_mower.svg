@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="1050" viewBox="0 0 750 1050">
+  <rect width="750" height="1050" rx="28" fill="#f6edd8"/>
+  <rect x="18" y="18" width="714" height="1014" rx="22" fill="#f6edd8" stroke="#23170f" stroke-width="8"/>
+  <rect x="40" y="40" width="670" height="82" rx="14" fill="#829a4a"/>
+  <text x="58" y="94" fill="#fff8ec" font-size="30" font-family="Trebuchet MS" font-weight="700">HAZARD</text>
+  <text x="58" y="196" fill="#2a1d14" font-size="48" font-family="Trebuchet MS" font-weight="700"><tspan x="58" dy="0">Lawn Mower</tspan></text>
+  <text x="58" y="330" fill="#2a1d14" font-size="34" font-family="Georgia"><tspan x="58" dy="0">Surface workers can be swept up.</tspan><tspan x="58" dy="42">Colonies must either retreat or</tspan><tspan x="58" dy="42">accept losses on exposed routes.</tspan></text>
+</svg>

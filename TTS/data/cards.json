@@ -1,0 +1,100 @@
+{
+  "colony_cards": [
+    {
+      "id": "food_storage",
+      "name": "Food Storage",
+      "cost": "1 leaf, 1 material",
+      "type": "Chamber",
+      "text": "Stores food for upkeep and queen feeding.",
+      "upgrade": "Can be upgraded to hold larger reserves.",
+      "color": "#d1a943"
+    },
+    {
+      "id": "nursery",
+      "name": "Nursery",
+      "cost": "2 food",
+      "type": "Chamber",
+      "text": "Raises eggs through the brood cycle. Requires food placed on it.",
+      "upgrade": "Level 1: 1 egg. Level 2: 3 eggs. Level 3: 5 eggs.",
+      "color": "#98c5d8"
+    },
+    {
+      "id": "expansion_chamber",
+      "name": "Expansion Chamber",
+      "cost": "2 leaves, 1 material",
+      "type": "Chamber",
+      "text": "Unlocks more nest space and future specialization.",
+      "upgrade": "Use to open more chamber slots on the colony mat.",
+      "color": "#c59ecf"
+    },
+    {
+      "id": "soldier_post",
+      "name": "Soldier Post",
+      "cost": "1 food, 1 material",
+      "type": "Chamber",
+      "text": "Protects the nest from pesticides, spiders, and surface danger.",
+      "upgrade": "May later support soldier ant actions and blocking.",
+      "color": "#ca6956"
+    }
+  ],
+  "event_cards": [
+    {
+      "id": "rain",
+      "name": "Rain",
+      "type": "Flood",
+      "text": "Increase flood pressure from the bottom of the colony. Food and eggs in the deepest space may be washed away.",
+      "color": "#6d93c7"
+    },
+    {
+      "id": "drought",
+      "name": "Drought",
+      "type": "Weather",
+      "text": "Remove all current flood levels, but make food collection harder until the next event.",
+      "color": "#d1a943"
+    },
+    {
+      "id": "pesticides",
+      "name": "Pesticides",
+      "type": "Hazard",
+      "text": "Pressure enters from the top down. Workers, soldiers, and the queen are all at risk if exposure is not blocked.",
+      "color": "#b96555"
+    },
+    {
+      "id": "lawn_mower",
+      "name": "Lawn Mower",
+      "type": "Hazard",
+      "text": "Surface workers can be swept up. Colonies must either retreat or accept losses on exposed routes.",
+      "color": "#829a4a"
+    },
+    {
+      "id": "frost",
+      "name": "Frost",
+      "type": "Weather",
+      "text": "Movement along trails slows. Long branches become more expensive to commit to this round.",
+      "color": "#9dc8d8"
+    },
+    {
+      "id": "spider",
+      "name": "Spider",
+      "type": "Predator",
+      "text": "A dangerous predator blocks a route. Defeat it for food or divert to a weaker branch.",
+      "color": "#6b5765"
+    }
+  ],
+  "resource_tokens": [
+    "Food",
+    "Leaves",
+    "Materials",
+    "Water",
+    "Eggs",
+    "Threat"
+  ],
+  "board_spaces": [
+    "Nest Entrance",
+    "Grass Patch",
+    "Flower Bed",
+    "Bird Bath",
+    "Compost Heap",
+    "Predator Lane"
+  ]
+}

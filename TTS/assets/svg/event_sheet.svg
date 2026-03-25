@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2250" height="2100" viewBox="0 0 2250 2100">
+<rect width="2250" height="2100" fill="#111"/>
+<g transform="translate(0, 0)">
+  <rect width="750" height="1050" rx="28" fill="#f6edd8"/>
+  <rect x="18" y="18" width="714" height="1014" rx="22" fill="#f6edd8" stroke="#23170f" stroke-width="8"/>
+  <rect x="40" y="40" width="670" height="82" rx="14" fill="#6d93c7"/>
+  <text x="58" y="94" fill="#fff8ec" font-size="30" font-family="Trebuchet MS" font-weight="700">FLOOD</text>
+  <text x="58" y="196" fill="#2a1d14" font-size="48" font-family="Trebuchet MS" font-weight="700"><tspan x="58" dy="0">Rain</tspan></text>
+  <text x="58" y="330" fill="#2a1d14" font-size="34" font-family="Georgia"><tspan x="58" dy="0">Increase flood pressure from the</tspan><tspan x="58" dy="42">bottom of the colony. Food and</tspan><tspan x="58" dy="42">eggs in the deepest space may be</tspan><tspan x="58" dy="42">washed away.</tspan></text>
+</g>
+<g transform="translate(750, 0)">
+  <rect width="750" height="1050" rx="28" fill="#f6edd8"/>
+  <rect x="18" y="18" width="714" height="1014" rx="22" fill="#f6edd8" stroke="#23170f" stroke-width="8"/>
+  <rect x="40" y="40" width="670" height="82" rx="14" fill="#d1a943"/>
+  <text x="58" y="94" fill="#fff8ec" font-size="30" font-family="Trebuchet MS" font-weight="700">WEATHER</text>
+  <text x="58" y="196" fill="#2a1d14" font-size="48" font-family="Trebuchet MS" font-weight="700"><tspan x="58" dy="0">Drought</tspan></text>
+  <text x="58" y="330" fill="#2a1d14" font-size="34" font-family="Georgia"><tspan x="58" dy="0">Remove all current flood levels,</tspan><tspan x="58" dy="42">but make food collection harder</tspan><tspan x="58" dy="42">until the next event.</tspan></text>
+</g>
+<g transform="translate(1500, 0)">
+  <rect width="750" height="1050" rx="28" fill="#f6edd8"/>
+  <rect x="18" y="18" width="714" height="1014" rx="22" fill="#f6edd8" stroke="#23170f" stroke-width="8"/>
+  <rect x="40" y="40" width="670" height="82" rx="14" fill="#b96555"/>
+  <text x="58" y="94" fill="#fff8ec" font-size="30" font-family="Trebuchet MS" font-weight="700">HAZARD</text>
+  <text x="58" y="196" fill="#2a1d14" font-size="48" font-family="Trebuchet MS" font-weight="700"><tspan x="58" dy="0">Pesticides</tspan></text>
+  <text x="58" y="330" fill="#2a1d14" font-size="34" font-family="Georgia"><tspan x="58" dy="0">Pressure enters from the top down.</tspan><tspan x="58" dy="42">Workers, soldiers, and the queen</tspan><tspan x="58" dy="42">are all at risk if exposure is not</tspan><tspan x="58" dy="42">blocked.</tspan></text>
+</g>
+<g transform="translate(0, 1050)">
+  <rect width="750" height="1050" rx="28" fill="#f6edd8"/>
+  <rect x="18" y="18" width="714" height="1014" rx="22" fill="#f6edd8" stroke="#23170f" stroke-width="8"/>
+  <rect x="40" y="40" width="670" height="82" rx="14" fill="#829a4a"/>
+  <text x="58" y="94" fill="#fff8ec" font-size="30" font-family="Trebuchet MS" font-weight="700">HAZARD</text>
+  <text x="58" y="196" fill="#2a1d14" font-size="48" font-family="Trebuchet MS" font-weight="700"><tspan x="58" dy="0">Lawn Mower</tspan></text>
+  <text x="58" y="330" fill="#2a1d14" font-size="34" font-family="Georgia"><tspan x="58" dy="0">Surface workers can be swept up.</tspan><tspan x="58" dy="42">Colonies must either retreat or</tspan><tspan x="58" dy="42">accept losses on exposed routes.</tspan></text>
+</g>
+<g transform="translate(750, 1050)">
+  <rect width="750" height="1050" rx="28" fill="#f6edd8"/>
+  <rect x="18" y="18" width="714" height="1014" rx="22" fill="#f6edd8" stroke="#23170f" stroke-width="8"/>
+  <rect x="40" y="40" width="670" height="82" rx="14" fill="#9dc8d8"/>
+  <text x="58" y="94" fill="#fff8ec" font-size="30" font-family="Trebuchet MS" font-weight="700">WEATHER</text>
+  <text x="58" y="196" fill="#2a1d14" font-size="48" font-family="Trebuchet MS" font-weight="700"><tspan x="58" dy="0">Frost</tspan></text>
+  <text x="58" y="330" fill="#2a1d14" font-size="34" font-family="Georgia"><tspan x="58" dy="0">Movement along trails slows. Long</tspan><tspan x="58" dy="42">branches become more expensive to</tspan><tspan x="58" dy="42">commit to this round.</tspan></text>
+</g>
+<g transform="translate(1500, 1050)">
+  <rect width="750" height="1050" rx="28" fill="#f6edd8"/>
+  <rect x="18" y="18" width="714" height="1014" rx="22" fill="#f6edd8" stroke="#23170f" stroke-width="8"/>
+  <rect x="40" y="40" width="670" height="82" rx="14" fill="#6b5765"/>
+  <text x="58" y="94" fill="#fff8ec" font-size="30" font-family="Trebuchet MS" font-weight="700">PREDATOR</text>
+  <text x="58" y="196" fill="#2a1d14" font-size="48" font-family="Trebuchet MS" font-weight="700"><tspan x="58" dy="0">Spider</tspan></text>
+  <text x="58" y="330" fill="#2a1d14" font-size="34" font-family="Georgia"><tspan x="58" dy="0">A dangerous predator blocks a</tspan><tspan x="58" dy="42">route. Defeat it for food or</tspan><tspan x="58" dy="42">divert to a weaker branch.</tspan></text>
+</g>
+</svg>

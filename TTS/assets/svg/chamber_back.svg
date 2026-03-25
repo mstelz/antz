@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="1050" viewBox="0 0 750 1050">
+  <rect width="750" height="1050" rx="28" fill="#f1e3c5"/>
+  <rect x="18" y="18" width="714" height="1014" rx="22" fill="#2d2117" stroke="#caa35b" stroke-width="8"/>
+  <circle cx="375" cy="525" r="180" fill="#d2a33d" stroke="#1d140f" stroke-width="10"/>
+  <text x="375" y="500" text-anchor="middle" fill="#fff7ea" font-size="92" font-family="Trebuchet MS" font-weight="700">ANTZ</text>
+  <text x="375" y="570" text-anchor="middle" fill="#fff7ea" font-size="42" font-family="Georgia">Colony Chamber</text>
+</svg>

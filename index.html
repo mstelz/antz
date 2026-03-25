@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antz Concept Prototype</title>
+    <style>
+      :root {
+        --page-bg: #7a5a37;
+        --table-rim: #3d2816;
+        --card: rgba(31, 21, 14, 0.82);
+        --card-border: rgba(243, 221, 178, 0.5);
+        --text: #f7edd9;
+        --muted: #dbcaa9;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at top, rgba(255, 233, 186, 0.3), transparent 40%),
+          linear-gradient(180deg, #9b774b 0%, var(--page-bg) 100%);
+        color: var(--text);
+        font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
+      }
+
+      body {
+        position: relative;
+      }
+
+      #game {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .notes {
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+        max-width: 280px;
+        padding: 10px 12px;
+        background: var(--card);
+        border: 1px solid var(--card-border);
+        border-radius: 10px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+        font-family: Georgia, serif;
+        font-size: 13px;
+        line-height: 1.45;
+        color: var(--muted);
+        pointer-events: none;
+      }
+
+      .notes strong {
+        display: block;
+        margin-bottom: 4px;
+        font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text);
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+    <script defer src="main.js"></script>
+  </head>
+  <body>
+    <div id="game"></div>
+    <div class="notes">
+      <strong>Prototype Controls</strong>
+      Drag colony cards into a player mat. Click the threat deck to reveal an event. Click the backyard zones to place worker tokens.
+    </div>
+  </body>
+</html>

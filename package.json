@@ -1,0 +1,16 @@
+{
+  "name": "antz",
+  "version": "1.0.0",
+  "description": "A lightweight Phaser.js playground to experiment with the board game ideas described in `my-thoughts.md`. The scene scales to your browser window, arranging the shared foraging board, event lane, tile supply, and player tableau dashboards (with counters) so nothing overlaps while you tune colony layouts.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "playwright": "^1.58.2"
+  }
+}

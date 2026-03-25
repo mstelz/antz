@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200">
+<rect width="1800" height="1200" fill="#efe2b8"/>
+<circle cx="180" cy="240" r="120" fill="#d1a943" stroke="#2a1d14" stroke-width="8"/>
+<text x="180" y="230" text-anchor="middle" fill="#fff8ea" font-size="46" font-family="Trebuchet MS" font-weight="700">Food</text>
+<text x="180" y="284" text-anchor="middle" fill="#fff8ea" font-size="24" font-family="Georgia">Token</text>
+<circle cx="720" cy="240" r="120" fill="#5b8a43" stroke="#2a1d14" stroke-width="8"/>
+<text x="720" y="230" text-anchor="middle" fill="#fff8ea" font-size="46" font-family="Trebuchet MS" font-weight="700">Leaves</text>
+<text x="720" y="284" text-anchor="middle" fill="#fff8ea" font-size="24" font-family="Georgia">Token</text>
+<circle cx="1260" cy="240" r="120" fill="#8b5b4a" stroke="#2a1d14" stroke-width="8"/>
+<text x="1260" y="230" text-anchor="middle" fill="#fff8ea" font-size="46" font-family="Trebuchet MS" font-weight="700">Materials</text>
+<text x="1260" y="284" text-anchor="middle" fill="#fff8ea" font-size="24" font-family="Georgia">Token</text>
+<circle cx="180" cy="660" r="120" fill="#5a88a5" stroke="#2a1d14" stroke-width="8"/>
+<text x="180" y="650" text-anchor="middle" fill="#fff8ea" font-size="46" font-family="Trebuchet MS" font-weight="700">Water</text>
+<text x="180" y="704" text-anchor="middle" fill="#fff8ea" font-size="24" font-family="Georgia">Token</text>
+<circle cx="720" cy="660" r="120" fill="#ca6956" stroke="#2a1d14" stroke-width="8"/>
+<text x="720" y="650" text-anchor="middle" fill="#fff8ea" font-size="46" font-family="Trebuchet MS" font-weight="700">Eggs</text>
+<text x="720" y="704" text-anchor="middle" fill="#fff8ea" font-size="24" font-family="Georgia">Token</text>
+<circle cx="1260" cy="660" r="120" fill="#c59ecf" stroke="#2a1d14" stroke-width="8"/>
+<text x="1260" y="650" text-anchor="middle" fill="#fff8ea" font-size="46" font-family="Trebuchet MS" font-weight="700">Threat</text>
+<text x="1260" y="704" text-anchor="middle" fill="#fff8ea" font-size="24" font-family="Georgia">Token</text>
+</svg>

@@ -1,0 +1,530 @@
+state = {
+  playerCount = 2,
+  chambersPerPlayer = 4,
+  round = 1,
+}
+
+assetUrls = {
+  board = "__BOARD_IMAGE_URL__",
+  playerMat = "__PLAYER_MAT_IMAGE_URL__",
+  chamberFaceSheet = "__CHAMBER_FACE_SHEET_URL__",
+  chamberBack = "__CHAMBER_BACK_URL__",
+  eventFaceSheet = "__EVENT_FACE_SHEET_URL__",
+  eventBack = "__EVENT_BACK_URL__",
+}
+
+layout = {
+  board = {
+    position = {0, 1, 0},
+    rotation = {0, 180, 0},
+    scale = {1.8, 1, 1.2},
+  },
+  chamberDeck = {
+    position = {-55, 2, -18},
+    rotation = {0, 180, 180},
+    scale = {1.2, 1, 1.2},
+  },
+  eventDeck = {
+    position = {55, 2, -18},
+    rotation = {0, 180, 180},
+    scale = {1.2, 1, 1.2},
+  },
+  tokenBags = {
+    {
+      nickname = "Resource Bag",
+      color = "Brown",
+      position = {-56, 2, 8},
+    },
+    {
+      nickname = "Worker Bag",
+      color = "Green",
+      position = {-49, 2, 8},
+    },
+    {
+      nickname = "Threat Bag",
+      color = "Red",
+      position = {49, 2, 8},
+    },
+  },
+}
+
+spawnedGuids = {}
+buttonIndex = {
+  setup = 0,
+  nextRound = 1,
+  playerCount = 2,
+}
+
+function onLoad(saved_data)
+  self.interactable = false
+  loadState(saved_data)
+  broadcastToAll("ANTZ TTS prototype loaded. Configure asset URLs at the top of Global if you want Setup Antz to spawn the table automatically.", {0.95, 0.88, 0.67})
+  createButtons()
+  refreshButtons()
+end
+
+function onSave()
+  return JSON.encode({
+    state = state,
+    spawnedGuids = spawnedGuids,
+  })
+end
+
+function createButtons()
+  self.createButton({
+    click_function = "setupAntz",
+    function_owner = self,
+    label = "Setup Antz",
+    position = {0, 0.3, -1.2},
+    rotation = {0, 180, 0},
+    width = 1800,
+    height = 400,
+    font_size = 220,
+    color = {0.42, 0.28, 0.17},
+    font_color = {1, 0.95, 0.86},
+  })
+
+  self.createButton({
+    click_function = "nextRound",
+    function_owner = self,
+    label = "Next Round",
+    position = {0, 0.3, -0.55},
+    rotation = {0, 180, 0},
+    width = 1800,
+    height = 400,
+    font_size = 220,
+    color = {0.29, 0.39, 0.21},
+    font_color = {1, 0.95, 0.86},
+  })
+
+  self.createButton({
+    click_function = "cyclePlayerCount",
+    function_owner = self,
+    label = "Players: 2",
+    position = {0, 0.3, 0.1},
+    rotation = {0, 180, 0},
+    width = 1800,
+    height = 360,
+    font_size = 190,
+    color = {0.24, 0.3, 0.42},
+    font_color = {1, 0.95, 0.86},
+  })
+end
+
+function refreshButtons()
+  self.editButton({
+    index = buttonIndex.playerCount,
+    label = "Players: " .. tostring(state.playerCount),
+  })
+end
+
+function setupAntz()
+  local missing = missingAssetKeys()
+  if #missing > 0 then
+    broadcastToAll("Setup blocked. Replace the placeholder URLs in Global first: " .. table.concat(missing, ", "), {1, 0.55, 0.55})
+    return
+  end
+
+  clearSpawnedObjects()
+  state.round = 1
+
+  spawnBoard()
+  spawnPlayerMats()
+  spawnDecks()
+  spawnBags()
+
+  saveState()
+  broadcastToAll("Antz table spawned for " .. tostring(state.playerCount) .. " players with board, colony mats, decks, bags, and snap points.", {0.81, 0.94, 0.79})
+end
+
+function nextRound()
+  state.round = state.round + 1
+  saveState()
+  broadcastToAll("Round " .. tostring(state.round) .. ": reveal a threat, resolve route pressure, then build or forage.", {0.85, 0.88, 1})
+end
+
+function cyclePlayerCount()
+  if state.playerCount >= 4 then
+    state.playerCount = 2
+  else
+    state.playerCount = state.playerCount + 1
+  end
+
+  refreshButtons()
+  saveState()
+  broadcastToAll("Player count set to " .. tostring(state.playerCount) .. ". Press Setup Antz to respawn the table for that layout.", {0.86, 0.92, 1})
+end
+
+function missingAssetKeys()
+  local missing = {}
+  for key, value in pairs(assetUrls) do
+    if string.find(value, "__", 1, true) ~= nil then
+      table.insert(missing, key)
+    end
+  end
+  table.sort(missing)
+  return missing
+end
+
+function spawnBoard()
+  local board = spawnObjectJSON({
+    json = JSON.encode({
+      Name = "Custom_Board",
+      Transform = toTransform(layout.board.position, layout.board.rotation, layout.board.scale),
+      Nickname = "Backyard Branch Board",
+      Description = "Branching routes from the nest to foraging spaces.",
+      CustomImage = {
+        ImageURL = assetUrls.board,
+        ImageSecondaryURL = "",
+        WidthScale = 0,
+        CustomToken = {},
+      },
+    }),
+    callback_function = function(obj)
+      registerSpawn(obj)
+      obj.setLock(true)
+      obj.setSnapPoints(boardSnapPoints())
+    end,
+  })
+
+  if board ~= nil then
+    registerSpawn(board)
+  end
+end
+
+function spawnPlayerMats()
+  for _, mat in ipairs(getMatLayout()) do
+    local spawned = spawnObjectJSON({
+      json = JSON.encode({
+        Name = "Custom_Board",
+        Transform = toTransform(mat.position, mat.rotation, mat.scale),
+        Nickname = mat.nickname,
+        Description = "Player colony tableau and tracks.",
+        CustomImage = {
+          ImageURL = assetUrls.playerMat,
+          ImageSecondaryURL = "",
+          WidthScale = 0,
+          CustomToken = {},
+        },
+      }),
+      callback_function = function(obj)
+        registerSpawn(obj)
+        obj.setLock(true)
+        obj.setSnapPoints(matSnapPoints(mat.rotation[2]))
+      end,
+    })
+
+    if spawned ~= nil then
+      registerSpawn(spawned)
+    end
+  end
+end
+
+function getMatLayout()
+  local scale = {1.3, 1, 0.9}
+
+  if state.playerCount == 2 then
+    return {
+      {
+        nickname = "Colony Mat A",
+        position = {-35, 1, 22},
+        rotation = {0, 180, 0},
+        scale = scale,
+      },
+      {
+        nickname = "Colony Mat B",
+        position = {35, 1, 22},
+        rotation = {0, 180, 0},
+        scale = scale,
+      },
+    }
+  end
+
+  if state.playerCount == 3 then
+    return {
+      {
+        nickname = "Colony Mat A",
+        position = {-44, 1, 23},
+        rotation = {0, 180, 0},
+        scale = scale,
+      },
+      {
+        nickname = "Colony Mat B",
+        position = {0, 1, 33},
+        rotation = {0, 180, 0},
+        scale = scale,
+      },
+      {
+        nickname = "Colony Mat C",
+        position = {44, 1, 23},
+        rotation = {0, 180, 0},
+        scale = scale,
+      },
+    }
+  end
+
+  return {
+    {
+      nickname = "Colony Mat A",
+      position = {-44, 1, 28},
+      rotation = {0, 180, 0},
+      scale = scale,
+    },
+    {
+      nickname = "Colony Mat B",
+      position = {44, 1, 28},
+      rotation = {0, 180, 0},
+      scale = scale,
+    },
+    {
+      nickname = "Colony Mat C",
+      position = {-44, 1, -30},
+      rotation = {0, 0, 0},
+      scale = scale,
+    },
+    {
+      nickname = "Colony Mat D",
+      position = {44, 1, -30},
+      rotation = {0, 0, 0},
+      scale = scale,
+    },
+  }
+end
+
+function spawnDecks()
+  local chamberDeck = spawnObjectJSON({
+    json = JSON.encode({
+      Name = "DeckCustom",
+      Transform = toTransform(layout.chamberDeck.position, layout.chamberDeck.rotation, layout.chamberDeck.scale),
+      Nickname = "Colony Deck",
+      Description = "Chamber cards for building the nest.",
+      CustomDeck = {
+        ["1"] = {
+          FaceURL = assetUrls.chamberFaceSheet,
+          BackURL = assetUrls.chamberBack,
+          NumWidth = 2,
+          NumHeight = 2,
+          BackIsHidden = true,
+          UniqueBack = false,
+          Type = 0,
+        },
+      },
+      DeckIDs = {100, 101, 102, 103},
+      ContainedObjects = chamberContainedObjects(),
+    }),
+    callback_function = function(obj)
+      registerSpawn(obj)
+    end,
+  })
+
+  if chamberDeck ~= nil then
+    registerSpawn(chamberDeck)
+  end
+
+  local eventDeck = spawnObjectJSON({
+    json = JSON.encode({
+      Name = "DeckCustom",
+      Transform = toTransform(layout.eventDeck.position, layout.eventDeck.rotation, layout.eventDeck.scale),
+      Nickname = "Threat Deck",
+      Description = "Backyard event cards.",
+      CustomDeck = {
+        ["2"] = {
+          FaceURL = assetUrls.eventFaceSheet,
+          BackURL = assetUrls.eventBack,
+          NumWidth = 3,
+          NumHeight = 2,
+          BackIsHidden = true,
+          UniqueBack = false,
+          Type = 0,
+        },
+      },
+      DeckIDs = {200, 201, 202, 203, 204, 205},
+      ContainedObjects = eventContainedObjects(),
+    }),
+    callback_function = function(obj)
+      registerSpawn(obj)
+    end,
+  })
+
+  if eventDeck ~= nil then
+    registerSpawn(eventDeck)
+  end
+end
+
+function spawnBags()
+  for _, bag in ipairs(layout.tokenBags) do
+    local spawned = spawnObject({
+      type = "Bag",
+      position = bag.position,
+      rotation = {0, 180, 0},
+      sound = false,
+      callback_function = function(obj)
+        registerSpawn(obj)
+        obj.setName(bag.nickname)
+        obj.setDescription("Utility bag for playtest counters and spare pieces.")
+        obj.setColorTint(stringColorToRGB(bag.color))
+      end,
+    })
+
+    if spawned ~= nil then
+      registerSpawn(spawned)
+    end
+  end
+end
+
+function boardSnapPoints()
+  return {
+    {position = {0, 0.25, 0}, rotation = {0, 180, 0}, rotation_snap = true},
+    {position = {8.4, 0.25, -1.9}, rotation = {0, 180, 0}, rotation_snap = true},
+    {position = {13.9, 0.25, -5.1}, rotation = {0, 180, 0}, rotation_snap = true},
+    {position = {2.8, 0.25, -12.7}, rotation = {0, 180, 0}, rotation_snap = true},
+    {position = {-14.2, 0.25, -5.3}, rotation = {0, 180, 0}, rotation_snap = true},
+    {position = {14.5, 0.25, 10.3}, rotation = {0, 180, 0}, rotation_snap = true},
+    {position = {-15.4, 0.25, 12.0}, rotation = {0, 180, 0}, rotation_snap = true},
+  }
+end
+
+function matSnapPoints(yRotation)
+  local points = {}
+  local startX = -6.6
+  local startZ = -6.9
+  local spacing = 4.35
+  local snapRotation = {0, yRotation or 180, 0}
+
+  for row = 0, 3 do
+    for col = 0, 3 do
+      table.insert(points, {
+        position = {
+          startX + (col * spacing),
+          0.25,
+          startZ + (row * spacing),
+        },
+        rotation = snapRotation,
+        rotation_snap = true,
+      })
+    end
+  end
+
+  local trackZ = {-6.4, -3.85, -1.3, 1.25, 3.8, 6.35, 8.9}
+  for _, z in ipairs(trackZ) do
+    table.insert(points, {
+      position = {7.55, 0.25, z},
+      rotation = snapRotation,
+      rotation_snap = false,
+    })
+  end
+
+  return points
+end
+
+function clearSpawnedObjects()
+  local seen = {}
+  for _, guid in ipairs(spawnedGuids) do
+    if not seen[guid] then
+      seen[guid] = true
+      local obj = getObjectFromGUID(guid)
+      if obj ~= nil then
+        destroyObject(obj)
+      end
+    end
+  end
+  spawnedGuids = {}
+end
+
+function registerSpawn(obj)
+  if obj == nil then
+    return
+  end
+
+  local guid = obj.getGUID()
+  if guid == nil or guid == "" then
+    return
+  end
+
+  for _, existing in ipairs(spawnedGuids) do
+    if existing == guid then
+      return
+    end
+  end
+
+  table.insert(spawnedGuids, guid)
+  saveState()
+end
+
+function toTransform(position, rotation, scale)
+  return {
+    posX = position[1],
+    posY = position[2],
+    posZ = position[3],
+    rotX = rotation[1],
+    rotY = rotation[2],
+    rotZ = rotation[3],
+    scaleX = scale[1],
+    scaleY = scale[2],
+    scaleZ = scale[3],
+  }
+end
+
+function chamberContainedObjects()
+  return {
+    cardObject(100, "Food Storage"),
+    cardObject(101, "Nursery"),
+    cardObject(102, "Expansion Chamber"),
+    cardObject(103, "Soldier Post"),
+  }
+end
+
+function eventContainedObjects()
+  return {
+    cardObject(200, "Rain"),
+    cardObject(201, "Drought"),
+    cardObject(202, "Pesticides"),
+    cardObject(203, "Lawn Mower"),
+    cardObject(204, "Frost"),
+    cardObject(205, "Spider"),
+  }
+end
+
+function cardObject(cardId, nickname)
+  return {
+    Name = "CardCustom",
+    Transform = {
+      posX = 0,
+      posY = 0,
+      posZ = 0,
+      rotX = 0,
+      rotY = 180,
+      rotZ = 180,
+      scaleX = 1,
+      scaleY = 1,
+      scaleZ = 1,
+    },
+    Nickname = nickname,
+    Description = "",
+    CardID = cardId,
+    SidewaysCard = false,
+  }
+end
+
+function saveState()
+  -- Intentionally empty; TTS persists state through onSave().
+end
+
+function loadState(saved_data)
+  if saved_data == nil or saved_data == "" then
+    return
+  end
+
+  local decoded = JSON.decode(saved_data)
+  if decoded == nil then
+    return
+  end
+
+  if decoded.state ~= nil then
+    state = decoded.state
+  end
+
+  if decoded.spawnedGuids ~= nil then
+    spawnedGuids = decoded.spawnedGuids
+  end
+end

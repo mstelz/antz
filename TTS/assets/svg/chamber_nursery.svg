@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="1050" viewBox="0 0 750 1050">
+  <rect width="750" height="1050" rx="28" fill="#f5ecd7"/>
+  <rect x="18" y="18" width="714" height="1014" rx="22" fill="#f5ecd7" stroke="#24180f" stroke-width="8"/>
+  <rect x="40" y="40" width="670" height="92" rx="18" fill="#98c5d8"/>
+  <text x="58" y="104" fill="#2a1d14" font-size="42" font-family="Trebuchet MS" font-weight="700"><tspan x="58" dy="0">Nursery</tspan></text>
+  <text x="58" y="182" fill="#5b4434" font-size="24" font-family="Georgia">Chamber | Cost: 2 food</text>
+  <text x="58" y="270" fill="#2a1d14" font-size="34" font-family="Georgia"><tspan x="58" dy="0">Raises eggs through the brood</tspan><tspan x="58" dy="42">cycle. Requires food placed on it.</tspan></text>
+  <rect x="40" y="760" width="670" height="210" rx="18" fill="#e8dcc7" stroke="#5b4434" stroke-width="4"/>
+  <text x="58" y="818" fill="#2a1d14" font-size="30" font-family="Trebuchet MS" font-weight="700">Upgrade / Notes</text>
+  <text x="58" y="868" fill="#2a1d14" font-size="28" font-family="Georgia"><tspan x="58" dy="0">Level 1: 1 egg. Level 2: 3 eggs.</tspan><tspan x="58" dy="34">Level 3: 5 eggs.</tspan></text>
+</svg>
