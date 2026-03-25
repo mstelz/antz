@@ -202,7 +202,7 @@ end
 function missingAssetKeys()
   local missing = {}
   for key, value in pairs(assetUrls) do
-    if string.find(value, "__", 1, true) ~= nil then
+    if value == nil or value == "" or string.find(value, "REPLACE_ME", 1, true) ~= nil then
       table.insert(missing, key)
     end
   end
@@ -211,7 +211,7 @@ function missingAssetKeys()
 end
 
 function spawnBoard()
-  local board = spawnObjectJSON({
+  spawnObjectJSON({
     json = JSON.encode({
       Name = "Custom_Board",
       Transform = toTransform(layout.board.position, layout.board.rotation, layout.board.scale),
@@ -230,15 +230,11 @@ function spawnBoard()
       obj.setSnapPoints(boardSnapPoints())
     end,
   })
-
-  if board ~= nil then
-    registerSpawn(board)
-  end
 end
 
 function spawnPlayerMats()
   for _, mat in ipairs(getMatLayout()) do
-    local spawned = spawnObjectJSON({
+    spawnObjectJSON({
       json = JSON.encode({
         Name = "Custom_Board",
         Transform = toTransform(mat.position, mat.rotation, mat.scale),
@@ -257,10 +253,6 @@ function spawnPlayerMats()
         obj.setSnapPoints(matSnapPoints(mat.rotation[2]))
       end,
     })
-
-    if spawned ~= nil then
-      registerSpawn(spawned)
-    end
   end
 end
 
@@ -336,7 +328,7 @@ function getMatLayout()
 end
 
 function spawnDecks()
-  local chamberDeck = spawnObjectJSON({
+  spawnObjectJSON({
     json = JSON.encode({
       Name = "DeckCustom",
       Transform = toTransform(layout.chamberDeck.position, layout.chamberDeck.rotation, layout.chamberDeck.scale),
@@ -361,11 +353,7 @@ function spawnDecks()
     end,
   })
 
-  if chamberDeck ~= nil then
-    registerSpawn(chamberDeck)
-  end
-
-  local eventDeck = spawnObjectJSON({
+  spawnObjectJSON({
     json = JSON.encode({
       Name = "DeckCustom",
       Transform = toTransform(layout.eventDeck.position, layout.eventDeck.rotation, layout.eventDeck.scale),
@@ -389,15 +377,11 @@ function spawnDecks()
       registerSpawn(obj)
     end,
   })
-
-  if eventDeck ~= nil then
-    registerSpawn(eventDeck)
-  end
 end
 
 function spawnBags()
   for _, bag in ipairs(layout.tokenBags) do
-    local spawned = spawnObject({
+    spawnObject({
       type = "Bag",
       position = bag.position,
       rotation = {0, 180, 0},
@@ -409,10 +393,6 @@ function spawnBags()
         obj.setColorTint(stringColorToRGB(bag.color))
       end,
     })
-
-    if spawned ~= nil then
-      registerSpawn(spawned)
-    end
   end
 end
 
@@ -509,28 +489,50 @@ function toTransform(position, rotation, scale)
 end
 
 function chamberContainedObjects()
+  local customDeck = {
+    ["1"] = {
+      FaceURL = assetUrls.chamberFaceSheet,
+      BackURL = assetUrls.chamberBack,
+      NumWidth = 2,
+      NumHeight = 2,
+      BackIsHidden = true,
+      UniqueBack = false,
+      Type = 0,
+    },
+  }
   return {
-    cardObject(100, "Food Storage"),
-    cardObject(101, "Nursery"),
-    cardObject(102, "Expansion Chamber"),
-    cardObject(103, "Soldier Post"),
+    cardObject(100, "Food Storage", customDeck),
+    cardObject(101, "Nursery", customDeck),
+    cardObject(102, "Expansion Chamber", customDeck),
+    cardObject(103, "Soldier Post", customDeck),
   }
 end
 
 function eventContainedObjects()
+  local customDeck = {
+    ["2"] = {
+      FaceURL = assetUrls.eventFaceSheet,
+      BackURL = assetUrls.eventBack,
+      NumWidth = 3,
+      NumHeight = 2,
+      BackIsHidden = true,
+      UniqueBack = false,
+      Type = 0,
+    },
+  }
   return {
-    cardObject(200, "Rain"),
-    cardObject(201, "Drought"),
-    cardObject(202, "Pesticides"),
-    cardObject(203, "Lawn Mower"),
-    cardObject(204, "Frost"),
-    cardObject(205, "Spider"),
+    cardObject(200, "Rain", customDeck),
+    cardObject(201, "Drought", customDeck),
+    cardObject(202, "Pesticides", customDeck),
+    cardObject(203, "Lawn Mower", customDeck),
+    cardObject(204, "Frost", customDeck),
+    cardObject(205, "Spider", customDeck),
   }
 end
 
-function cardObject(cardId, nickname)
+function cardObject(cardId, nickname, customDeck)
   return {
-    Name = "CardCustom",
+    Name = "Card",
     Transform = {
       posX = 0,
       posY = 0,
@@ -545,6 +547,7 @@ function cardObject(cardId, nickname)
     Nickname = nickname,
     Description = "",
     CardID = cardId,
+    CustomDeck = customDeck,
     SidewaysCard = false,
   }
 end
