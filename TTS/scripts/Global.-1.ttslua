@@ -5,12 +5,12 @@ state = {
 }
 
 assetUrls = {
-  board = "__BOARD_IMAGE_URL__",
-  playerMat = "__PLAYER_MAT_IMAGE_URL__",
-  chamberFaceSheet = "__CHAMBER_FACE_SHEET_URL__",
-  chamberBack = "__CHAMBER_BACK_URL__",
-  eventFaceSheet = "__EVENT_FACE_SHEET_URL__",
-  eventBack = "__EVENT_BACK_URL__",
+  board = "http://127.0.0.1:8000/TTS/assets/png/board.png",
+  playerMat = "http://127.0.0.1:8000/TTS/assets/png/player_mat.png",
+  chamberFaceSheet = "http://127.0.0.1:8000/TTS/assets/png/chamber_sheet.png",
+  chamberBack = "http://127.0.0.1:8000/TTS/assets/png/chamber_back.png",
+  eventFaceSheet = "http://127.0.0.1:8000/TTS/assets/png/event_sheet.png",
+  eventBack = "http://127.0.0.1:8000/TTS/assets/png/event_back.png",
 }
 
 layout = {

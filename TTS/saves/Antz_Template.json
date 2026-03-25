@@ -7,7 +7,7 @@
   "PlayArea": 0.5,
   "Table": "Table_Rounded",
   "Sky": "Sky_Day",
-  "Note": "Replace the placeholder values with hosted PNG URLs from TTS/assets/png, then mirror the same URLs in scripts/Global.-1.ttslua if you want button-driven setup. The global script now supports 2-4 players through the Players button.",
+  "Note": "Configured for local HTTP testing with python3 -m http.server 8000. If Tabletop Simulator does not load 127.0.0.1 assets reliably, replace 127.0.0.1 with your LAN IP in this save and in scripts/Global.-1.ttslua.",
   "LuaScript": "-- Copy scripts/Global.-1.ttslua here if you want a single-file save export.\n",
   "XmlUI": "<Defaults></Defaults>",
   "ObjectStates": [
@@ -16,21 +16,21 @@
       "Transform": {"posX": 0, "posY": 1, "posZ": 0, "rotX": 0, "rotY": 180, "rotZ": 0, "scaleX": 1.8, "scaleY": 1, "scaleZ": 1.2},
       "Nickname": "Backyard Branch Board",
       "Description": "Branching routes from the nest to foraging spaces.",
-      "CustomImage": {"ImageURL": "__BOARD_IMAGE_URL__", "ImageSecondaryURL": "", "WidthScale": 0, "CustomToken": {}}
+      "CustomImage": {"ImageURL": "http://127.0.0.1:8000/TTS/assets/png/board.png", "ImageSecondaryURL": "", "WidthScale": 0, "CustomToken": {}}
     },
     {
       "Name": "Custom_Board",
       "Transform": {"posX": -35, "posY": 1, "posZ": 22, "rotX": 0, "rotY": 180, "rotZ": 0, "scaleX": 1.3, "scaleY": 1, "scaleZ": 0.9},
       "Nickname": "Colony Mat A",
       "Description": "Player colony tableau and tracks.",
-      "CustomImage": {"ImageURL": "__PLAYER_MAT_IMAGE_URL__", "ImageSecondaryURL": "", "WidthScale": 0, "CustomToken": {}}
+      "CustomImage": {"ImageURL": "http://127.0.0.1:8000/TTS/assets/png/player_mat.png", "ImageSecondaryURL": "", "WidthScale": 0, "CustomToken": {}}
     },
     {
       "Name": "Custom_Board",
       "Transform": {"posX": 35, "posY": 1, "posZ": 22, "rotX": 0, "rotY": 180, "rotZ": 0, "scaleX": 1.3, "scaleY": 1, "scaleZ": 0.9},
       "Nickname": "Colony Mat B",
       "Description": "Player colony tableau and tracks.",
-      "CustomImage": {"ImageURL": "__PLAYER_MAT_IMAGE_URL__", "ImageSecondaryURL": "", "WidthScale": 0, "CustomToken": {}}
+      "CustomImage": {"ImageURL": "http://127.0.0.1:8000/TTS/assets/png/player_mat.png", "ImageSecondaryURL": "", "WidthScale": 0, "CustomToken": {}}
     },
     {
       "Name": "DeckCustom",
@@ -39,8 +39,8 @@
       "Description": "Chamber cards for building the nest.",
       "CustomDeck": {
         "1": {
-          "FaceURL": "__CHAMBER_FACE_SHEET_URL__",
-          "BackURL": "__CHAMBER_BACK_URL__",
+          "FaceURL": "http://127.0.0.1:8000/TTS/assets/png/chamber_sheet.png",
+          "BackURL": "http://127.0.0.1:8000/TTS/assets/png/chamber_back.png",
           "NumWidth": 2,
           "NumHeight": 2,
           "BackIsHidden": true,
@@ -58,8 +58,8 @@
       "Description": "Backyard event cards.",
       "CustomDeck": {
         "2": {
-          "FaceURL": "__EVENT_FACE_SHEET_URL__",
-          "BackURL": "__EVENT_BACK_URL__",
+          "FaceURL": "http://127.0.0.1:8000/TTS/assets/png/event_sheet.png",
+          "BackURL": "http://127.0.0.1:8000/TTS/assets/png/event_back.png",
           "NumWidth": 3,
           "NumHeight": 2,
           "BackIsHidden": true,
