@@ -72,7 +72,7 @@ end
 function createButtons()
   Global.createButton({
     click_function = "setupAntz",
-    function_owner = self,
+    function_owner = Global,
     label = "Setup Antz",
     position = {0, 0.3, -1.2},
     rotation = {0, 180, 0},
@@ -85,7 +85,7 @@ function createButtons()
 
   Global.createButton({
     click_function = "nextRound",
-    function_owner = self,
+    function_owner = Global,
     label = "Next Round",
     position = {0, 0.3, -0.55},
     rotation = {0, 180, 0},
@@ -98,7 +98,7 @@ function createButtons()
 
   Global.createButton({
     click_function = "cyclePlayerCount",
-    function_owner = self,
+    function_owner = Global,
     label = "Players: 2",
     position = {0, 0.3, 0.1},
     rotation = {0, 180, 0},
