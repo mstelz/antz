@@ -18,6 +18,39 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 
+DEFAULT_CONSOLE_OBJECT = {
+    "Name": "BlockSquare",
+    "Transform": {
+        "posX": 0.0,
+        "posY": 1.2,
+        "posZ": -34.0,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 2.2,
+        "scaleY": 0.6,
+        "scaleZ": 1.4,
+    },
+    "Nickname": "Antz Setup Console",
+    "Description": "Use the buttons on this block to choose player count and spawn the Antz table.",
+    "ColorDiffuse": {"r": 0.18, "g": 0.15, "b": 0.12},
+    "Locked": True,
+    "Grid": True,
+    "Snap": True,
+    "Autoraise": True,
+    "Sticky": False,
+    "Tooltip": True,
+    "GridProjection": False,
+    "Hands": False,
+    "CardID": 0,
+    "SidewaysCard": False,
+    "CustomDeck": {},
+    "LuaScript": "",
+    "LuaScriptState": "",
+    "XmlUI": "",
+    "GUID": "antz01",
+}
+
 DEFAULT_SAVE = {
     "SaveName": "Antz Prototype",
     "GameMode": "Sandbox",
@@ -40,6 +73,7 @@ DEFAULT_SAVE = {
     ),
     "Rules": "",
     "PlayerTurn": "",
+    "DrawImage": "",
     "Grid": {
         "Type": 0,
         "Lines": False,
@@ -110,6 +144,9 @@ def main():
     # previously minimal or missing fields expected by the game loader.
     save = dict(DEFAULT_SAVE)
     save.update(existing_save)
+
+    if not save.get("ObjectStates"):
+        save["ObjectStates"] = [dict(DEFAULT_CONSOLE_OBJECT)]
 
     save["LuaScript"] = lua_script
     save["XmlUI"] = xml_ui

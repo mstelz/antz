@@ -15,6 +15,7 @@
   "Note": "Load this save, then click 'Setup Antz' on the control panel to spawn the full table. Assets are served from a local HTTP server (python3 -m http.server 8000 from the repo root). If 127.0.0.1 does not work, replace it with your LAN IP in scripts/Global.-1.ttslua and re-run: python3 TTS/build_save.py",
   "Rules": "",
   "PlayerTurn": "",
+  "DrawImage": "",
   "Grid": {
     "Type": 0,
     "Lines": false,
@@ -86,7 +87,44 @@
   "LuaScriptState": "",
   "XmlUI": "<Defaults>\n  <Text fontSize=\"20\" color=\"#FFF6EA\" />\n  <Button colors=\"#6B4A2D|#8A6138|#4B3424|#F8E7C7\" />\n</Defaults>\n",
   "VectorLines": [],
-  "ObjectStates": [],
+  "ObjectStates": [
+    {
+      "Name": "BlockSquare",
+      "Transform": {
+        "posX": 0.0,
+        "posY": 1.2,
+        "posZ": -34.0,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 2.2,
+        "scaleY": 0.6,
+        "scaleZ": 1.4
+      },
+      "Nickname": "Antz Setup Console",
+      "Description": "Use the buttons on this block to choose player count and spawn the Antz table.",
+      "ColorDiffuse": {
+        "r": 0.18,
+        "g": 0.15,
+        "b": 0.12
+      },
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "Hands": false,
+      "CardID": 0,
+      "SidewaysCard": false,
+      "CustomDeck": {},
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "GUID": "antz01"
+    }
+  ],
   "SnapPoints": [],
   "DecalPallet": [],
   "Decals": [],
