@@ -2,3 +2,5 @@ node_modules/
 
 .playwright-*
 .playwright_*
+__pycache__/
+*.pyc
