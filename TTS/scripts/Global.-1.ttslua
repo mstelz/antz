@@ -56,7 +56,6 @@ buttonIndex = {
 }
 
 function onLoad(saved_data)
-  self.interactable = false
   loadState(saved_data)
   broadcastToAll("ANTZ TTS prototype loaded. Configure asset URLs at the top of Global if you want Setup Antz to spawn the table automatically.", {0.95, 0.88, 0.67})
   createButtons()
@@ -71,7 +70,7 @@ function onSave()
 end
 
 function createButtons()
-  self.createButton({
+  Global.createButton({
     click_function = "setupAntz",
     function_owner = self,
     label = "Setup Antz",
@@ -84,7 +83,7 @@ function createButtons()
     font_color = {1, 0.95, 0.86},
   })
 
-  self.createButton({
+  Global.createButton({
     click_function = "nextRound",
     function_owner = self,
     label = "Next Round",
@@ -97,7 +96,7 @@ function createButtons()
     font_color = {1, 0.95, 0.86},
   })
 
-  self.createButton({
+  Global.createButton({
     click_function = "cyclePlayerCount",
     function_owner = self,
     label = "Players: 2",
@@ -112,7 +111,7 @@ function createButtons()
 end
 
 function refreshButtons()
-  self.editButton({
+  Global.editButton({
     index = buttonIndex.playerCount,
     label = "Players: " .. tostring(state.playerCount),
   })
