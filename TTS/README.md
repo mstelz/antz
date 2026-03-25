@@ -13,7 +13,7 @@ This folder contains a first-pass Tabletop Simulator version of `Antz` built fro
 - `assets/svg/*_back.svg`: card backs
 - `assets/svg/tokens_sheet.svg`: resource token sheet
 - `assets/png/*.png`: raster exports for boards, mats, cards, and sheets after generation
-- `scripts/Global.-1.ttslua`: setup and round helper buttons plus spawn/snap-point automation
+- `scripts/Global.-1.ttslua`: spawns a setup console block plus the board/mat/deck automation
 - `saves/Antz_Template.json`: TTS save template with placeholder asset URLs
 - `data/cards.json`: source data for cards
 - `tools_generate_assets.py`: regenerates SVG assets and calls the PNG renderer
@@ -21,7 +21,7 @@ This folder contains a first-pass Tabletop Simulator version of `Antz` built fro
 
 ## What This Version Assumes
 
-- 2-4 players via the `Players` button in the global script
+- 2-4 players via the `Players` button on the spawned setup console block
 - one shared backyard board
 - one colony deck
 - one threat deck
@@ -38,10 +38,11 @@ This folder contains a first-pass Tabletop Simulator version of `Antz` built fro
    - `__CHAMBER_BACK_URL__`
    - `__EVENT_FACE_SHEET_URL__`
    - `__EVENT_BACK_URL__`
-3. Mirror the same URLs in [Global.-1.ttslua](/home/mike/Development/antz/TTS/scripts/Global.-1.ttslua) if you want the `Setup Antz` button to spawn everything from an empty table.
+3. Mirror the same URLs in [Global.-1.ttslua](/home/mike/Development/antz/TTS/scripts/Global.-1.ttslua) if you want the setup console to spawn everything from an empty table.
 4. Import the save into Tabletop Simulator or paste the global script into an existing save.
-5. Use the `Players` button to choose `2`, `3`, or `4` players.
-6. Press `Setup Antz` to spawn the board, the right number of player mats, the chamber deck, the threat deck, and utility bags. The spawned mats include tableau snap points for chamber cards.
+5. After load, find the `Antz Setup Console` block that the global script spawns near the table edge.
+6. Use the `Players` button on that block to choose `2`, `3`, or `4` players.
+7. Press `Setup Antz` on that block to spawn the board, the right number of player mats, the chamber deck, the threat deck, and utility bags. The spawned mats include tableau snap points for chamber cards.
 
 ## Suggested First Table Layout
 

@@ -14,6 +14,11 @@ assetUrls = {
 }
 
 layout = {
+  controlPanel = {
+    position = {0, 1.2, -34},
+    rotation = {0, 180, 0},
+    scale = {2.2, 0.6, 1.4},
+  },
   board = {
     position = {0, 1, 0},
     rotation = {0, 180, 0},
@@ -49,49 +54,106 @@ layout = {
 }
 
 spawnedGuids = {}
+controlPanelGuid = nil
 
 function onLoad(saved_data)
+  loadState(saved_data)
   broadcastToAll("ANTZ TTS prototype loaded. Configure asset URLs at the top of Global if you want Setup Antz to spawn the table automatically.", {0.95, 0.88, 0.67})
-  createButtons()
+  spawnControlPanel()
 end
 
-function createButtons()
-  Global.clearButtons()
+function onSave()
+  return JSON.encode({
+    state = state,
+    spawnedGuids = spawnedGuids,
+    controlPanelGuid = controlPanelGuid,
+  })
+end
 
-  Global.createButton({
+function spawnControlPanel()
+  local existing = nil
+
+  if controlPanelGuid ~= nil then
+    existing = getObjectFromGUID(controlPanelGuid)
+  end
+
+  if existing == nil then
+    for _, obj in ipairs(getAllObjects()) do
+      if obj.getName() == "Antz Setup Console" then
+        existing = obj
+        break
+      end
+    end
+  end
+
+  if existing ~= nil then
+    controlPanelGuid = existing.getGUID()
+    configureControlPanel(existing)
+    return
+  end
+
+  local panel = spawnObject({
+    type = "BlockSquare",
+    position = layout.controlPanel.position,
+    rotation = layout.controlPanel.rotation,
+    scale = layout.controlPanel.scale,
+    sound = false,
+    callback_function = function(obj)
+      obj.setName("Antz Setup Console")
+      obj.setDescription("Use the buttons on this block to choose player count and spawn the Antz table.")
+      obj.setLock(true)
+      obj.setColorTint({0.18, 0.15, 0.12})
+      controlPanelGuid = obj.getGUID()
+      configureControlPanel(obj)
+    end,
+  })
+
+  if panel ~= nil then
+    controlPanelGuid = panel.getGUID()
+  end
+end
+
+function configureControlPanel(panel)
+  if panel == nil then
+    return
+  end
+
+  panel.clearButtons()
+
+  panel.createButton({
     click_function = "setupAntz",
     function_owner = Global,
     label = "Setup Antz",
-    position = {0, 0.3, -1.2},
-    rotation = {0, 180, 0},
+    position = {0, 0.32, -0.8},
+    rotation = {0, 0, 0},
     width = 1800,
-    height = 400,
+    height = 360,
     font_size = 220,
     color = {0.42, 0.28, 0.17},
     font_color = {1, 0.95, 0.86},
   })
 
-  Global.createButton({
+  panel.createButton({
     click_function = "nextRound",
     function_owner = Global,
     label = "Next Round",
-    position = {0, 0.3, -0.55},
-    rotation = {0, 180, 0},
+    position = {0, 0.32, 0},
+    rotation = {0, 0, 0},
     width = 1800,
-    height = 400,
-    font_size = 220,
+    height = 320,
+    font_size = 200,
     color = {0.29, 0.39, 0.21},
     font_color = {1, 0.95, 0.86},
   })
 
-  Global.createButton({
+  panel.createButton({
     click_function = "cyclePlayerCount",
     function_owner = Global,
     label = "Players: " .. tostring(state.playerCount),
-    position = {0, 0.3, 0.1},
-    rotation = {0, 180, 0},
+    position = {0, 0.32, 0.76},
+    rotation = {0, 0, 0},
     width = 1800,
-    height = 360,
+    height = 320,
     font_size = 190,
     color = {0.24, 0.3, 0.42},
     font_color = {1, 0.95, 0.86},
@@ -128,7 +190,12 @@ function cyclePlayerCount()
     state.playerCount = state.playerCount + 1
   end
 
-  createButtons()
+  local panel = getObjectFromGUID(controlPanelGuid)
+  if panel ~= nil then
+    configureControlPanel(panel)
+  else
+    spawnControlPanel()
+  end
   broadcastToAll("Player count set to " .. tostring(state.playerCount) .. ". Press Setup Antz to respawn the table for that layout.", {0.86, 0.92, 1})
 end
 
@@ -480,4 +547,27 @@ function cardObject(cardId, nickname)
     CardID = cardId,
     SidewaysCard = false,
   }
+end
+
+function loadState(saved_data)
+  if saved_data == nil or saved_data == "" then
+    return
+  end
+
+  local decoded = JSON.decode(saved_data)
+  if decoded == nil then
+    return
+  end
+
+  if decoded.state ~= nil then
+    state = decoded.state
+  end
+
+  if decoded.spawnedGuids ~= nil then
+    spawnedGuids = decoded.spawnedGuids
+  end
+
+  if decoded.controlPanelGuid ~= nil then
+    controlPanelGuid = decoded.controlPanelGuid
+  end
 end
