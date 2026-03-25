@@ -220,8 +220,7 @@ function spawnBoard()
       CustomImage = {
         ImageURL = assetUrls.board,
         ImageSecondaryURL = "",
-        WidthScale = 0,
-        CustomToken = {},
+        WidthScale = 1,
       },
     }),
     callback_function = function(obj)
@@ -243,8 +242,7 @@ function spawnPlayerMats()
         CustomImage = {
           ImageURL = assetUrls.playerMat,
           ImageSecondaryURL = "",
-          WidthScale = 0,
-          CustomToken = {},
+          WidthScale = 1,
         },
       }),
       callback_function = function(obj)
@@ -530,8 +528,12 @@ function eventContainedObjects()
   }
 end
 
+cardGuidCounter = 0
+
 function cardObject(cardId, nickname, customDeck)
+  cardGuidCounter = cardGuidCounter + 1
   return {
+    GUID = string.format("c%05d", cardGuidCounter),
     Name = "Card",
     Transform = {
       posX = 0,
